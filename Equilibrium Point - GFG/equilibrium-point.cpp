@@ -12,6 +12,34 @@ class Solution{
     int equilibriumPoint(long long a[], int n) {
     
         // Your code here
+        // if(n==1)
+        // {
+        //     return n;
+        // }
+        // if(n==2)
+        // {
+        //     return -1;
+        // }
+        // long long left[n];
+        // long long right[n];
+        // left[0]=a[0];
+        // for(int i=1;i<n;i++)
+        // {
+        //     left[i]=a[i]+left[i-1];
+        // }
+        // right[n-1]=a[n-1];
+        // for(int i=n-2;i>=0;i--)
+        // {
+        //     right[i]=a[i]+right[i+1];
+        // }
+        // for(int i=0;i<n;i++)
+        // {
+        //     if(left[i]==right[i])
+        //     {
+        //         return i+1;
+        //     }
+        // }
+        // return -1;
         if(n==1)
         {
             return n;
@@ -23,12 +51,12 @@ class Solution{
         long long left[n];
         long long right[n];
         left[0]=a[0];
-        for(int i=1;i<n;i++)
+        for(int i=1;i<n-1;i++)
         {
             left[i]=a[i]+left[i-1];
         }
         right[n-1]=a[n-1];
-        for(int i=n-2;i>=0;i--)
+        for(int i=n-2;i>0;i--)
         {
             right[i]=a[i]+right[i+1];
         }
@@ -40,7 +68,6 @@ class Solution{
             }
         }
         return -1;
-        
         
     }
 

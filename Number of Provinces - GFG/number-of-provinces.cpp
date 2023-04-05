@@ -7,43 +7,45 @@ using namespace std;
 //User function Template for C++
 
 class Solution {
-  public:
-    void dfs(int node,vector<int>adjList[],int vis[])
+    private:
+      void dfs(int node,vector<int>adjLS[],int vis[])
     {
         vis[node]=1;
-        for(auto x : adjList[node])
+        for(auto it:adjLS[node])
         {
-            if(!vis[x])
+            if(!vis[it])
             {
-                dfs(x,adjList,vis);
+                dfs(it,adjLS,vis);
             }
         }
     }
+  public:
     int numProvinces(vector<vector<int>> adj, int V) {
         // code here
-        vector<int>adjList[V];
+        vector<int>adjLS[V];
         for(int i=0;i<V;i++)
         {
             for(int j=0;j<V;j++)
             {
                 if(adj[i][j]==1 && i!=j)
                 {
-                    adjList[i].push_back(j);
-                    adjList[j].push_back(i);
+                    adjLS[i].push_back(j);
+                    adjLS[j].push_back(i);
                 }
             }
         }
         int vis[V]={0};
-        int ans=0;
+        int cnt=0;
         for(int i=0;i<V;i++)
         {
             if(!vis[i])
             {
-                ans++;
-                dfs(i,adjList,vis);
+                cnt++;
+                dfs(i,adjLS,vis);
             }
         }
-        return ans;
+        return cnt;
+        
     }
 };
 

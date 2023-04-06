@@ -5,30 +5,35 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 public:
-    void dfs(int row,int col,vector<vector<int>>&ans,vector<vector<int>>&image,int newColor,int delrow[],int delcol[],int initialcolor)
+int inicolor;
+    void dfs(int row,int col,vector<vector<int>>&image,vector<vector<int>>&ans,int newColor)
     {
         ans[row][col]=newColor;
-        int n=image.size();
-        int m=image[0].size();
-        for(int i=0;i<4;i++)
-        {
-            int nrow=delrow[i]+row;
-            int ncol=delcol[i]+col;
-            if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && image[nrow][ncol]==initialcolor && ans[nrow][ncol]!=newColor)
-            {
-                dfs(nrow,ncol,ans,image,newColor,delrow,delcol,initialcolor);
-            }
-        }
-    }
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
-        // Code here 
-        int initialcolor=image[sr][sc];
-        vector<vector<int>>ans=image;
+        // int n=image.size();
+        // int m=image[0].size();
         int delrow[]={-1,0,+1,0};
         int delcol[]={0,+1,0,-1};
-        dfs(sr,sc,ans,image,newColor,delrow,delcol,initialcolor);
+        int n=image.size();
+        int m=image[0].size();
+       for(int i=0;i<4;i++)
+       {
+           int nrow=row+delrow[i];
+           int ncol=col+delcol[i];
+           if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && image[nrow][ncol]==inicolor && ans[nrow][ncol]!=newColor)
+           {
+               ans[nrow][ncol]=newColor;
+               dfs(nrow,ncol,image,ans,newColor);
+           }
+       }
+        
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        // Code here
+        inicolor=image[sr][sc];
+        vector<vector<int>>ans=image;
+        dfs(sr,sc,image,ans,newColor);
         return ans;
-        // int newColor=ans[sr][sc];
+        
     }
 };
 

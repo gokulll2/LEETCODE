@@ -6,12 +6,13 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in a directed graph.
-    bool dfs(int node, vector<int>adj[],int vis[],int pathvis[])
+    
+    bool dfs(int node,vector<int>adj[],int vis[],int pathvis[])
     {
         vis[node]=1;
         pathvis[node]=1;
         
-        for(auto it:adj[node])
+        for(auto it: adj[node])
         {
             if(!vis[it])
             {

@@ -98,58 +98,34 @@ class Solution{
     public:
     vector<int> postOrder(Node* node) {
         // code here
-    //   vector<int>postorder;
-    //   Node*curr=node;
-    //   stack<Node*>st;
-    //   while(curr!=NULL || !st.empty())
-    //   {
-    //       if(curr!=NULL)
-    //       {
-    //           st.push(curr);
-    //           curr=curr->left;
-    //       }
-    //       else{
-    //           Node* temp=st.top()->right;
-    //           if(temp==NULL)
-    //           {
-    //               temp=st.top();
-    //               st.pop();
-    //               postorder.push_back(temp->data);
-    //               while(!st.empty() && temp==st.top()->right)
-    //               {
-    //                   temp=st.top();
-    //                   st.pop();
-    //                   postorder.push_back(temp->data);
-    //               }
-    //           }
-    //           else{
-    //               curr=temp;
-    //           }
-    //       }
-    //   }
-    //   return postorder;
-    
-    vector<int>ans;
-    // Node* curr=node;
-    stack<Node*>st;
-    st.push(node);
-    while(!st.empty())
-    {
-        Node*temp=st.top();
-        st.pop();
-        ans.push_back(temp->data);
         
-        if(temp->left)
+        vector<int>postOrder;
+        
+        if(node==NULL)
         {
-            st.push(temp->left);
+            return postOrder;
         }
-        if(temp->right)
+        
+        stack<Node*>st;
+        st.push(node);
+        while(!st.empty())
         {
-            st.push(temp->right);
+            node=st.top();
+            st.pop();
+            
+            postOrder.push_back(node->data);
+            
+            if(node->left)
+            {
+                st.push(node->left);
+            }
+            if(node->right)
+            {
+                st.push(node->right);
+            }
         }
-    }
-    reverse(ans.begin(),ans.end());
-    return ans;
+        reverse(postOrder.begin(),postOrder.end());
+        return postOrder;
     }
 };
 

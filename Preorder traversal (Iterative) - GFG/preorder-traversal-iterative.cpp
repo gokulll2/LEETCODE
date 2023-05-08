@@ -100,10 +100,10 @@ class Solution{
     vector<int> preOrder(Node* root)
     {
         //code here
-        vector<int>preorder;
+        vector<int>preOrder;
         if(root==NULL)
         {
-            return preorder;
+            return preOrder;
         }
         stack<Node*>st;
         st.push(root);
@@ -111,8 +111,7 @@ class Solution{
         {
             root=st.top();
             st.pop();
-            
-            preorder.push_back(root->data);
+            preOrder.push_back(root->data);
             
             if(root->right!=NULL)
             {
@@ -123,7 +122,7 @@ class Solution{
                 st.push(root->left);
             }
         }
-        return preorder;
+        return preOrder;
     }
 };
 

@@ -13,9 +13,9 @@ public:
     int largest(vector<int> &arr, int n)
     {
         int maxi=INT_MIN;
-        for(int i=0;i<arr.size();i++)
+        for(int i=0;i<n;i++)
         {
-            if(maxi<=arr[i])
+            if(maxi<arr[i])
             {
                 maxi=arr[i];
             }

@@ -100,7 +100,7 @@ public:
     {
         //code here
         vector<int>ans;
-        Node*curr=root;
+        Node*curr = root;
         while(curr!=NULL)
         {
             if(curr->left==NULL)
@@ -109,7 +109,7 @@ public:
                 curr=curr->right;
             }
             else{
-                Node*prev=curr->left;
+                Node* prev = curr->left;
                 while(prev->right!=NULL && prev->right!=curr)
                 {
                     prev=prev->right;
@@ -127,8 +127,6 @@ public:
             }
         }
         return ans;
-        
-        
     }
 };
 

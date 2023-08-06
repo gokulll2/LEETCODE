@@ -100,29 +100,34 @@ class Solution{
     vector<int> preOrder(Node* root)
     {
         //code here
-        vector<int>preOrder;
-        if(root==NULL)
+        vector<int>ans;
+        Node* curr = root;
+        while(curr!=NULL)
         {
-            return preOrder;
-        }
-        stack<Node*>st;
-        st.push(root);
-        while(!st.empty())
-        {
-            root=st.top();
-            st.pop();
-            preOrder.push_back(root->data);
-            
-            if(root->right!=NULL)
+            if(curr->left==NULL)
             {
-                st.push(root->right);
+                ans.push_back(curr->data);
+                curr=curr->right;
             }
-            if(root->left!=NULL)
-            {
-                st.push(root->left);
+            else{
+                Node* prev = curr->left;
+                while(prev->right!=NULL && prev->right!=curr)
+                {
+                    prev=prev->right;
+                }
+                if(prev->right==NULL)
+                {
+                    prev->right=curr;
+                    ans.push_back(curr->data);
+                    curr=curr->left;
+                }
+                else{
+                    prev->right=NULL;
+                    curr=curr->right;
+                }
             }
         }
-        return preOrder;
+        return ans;
     }
 };
 

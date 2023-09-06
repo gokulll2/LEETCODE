@@ -1,8 +1,10 @@
 //{ Driver Code Starts
+//Initial Template for C++
 // C program to find n'th Node in linked list
 #include <stdio.h>
 #include <stdlib.h>
 #include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 /* Link list Node */
@@ -22,6 +24,55 @@ int getNthFromLast(struct Node* head, int n);
 
 
 /* Driver program to test above function*/
+
+// } Driver Code Ends
+/* struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+
+//Function to find the data of nth node from the end of a linked list.
+class Solution{
+public:
+    int getNthFromLast(Node *head, int n)
+    {
+           // Your code here
+           Node* curr=head;
+           int count=0;
+           Node* slow=head;
+           while(slow!=NULL)
+           {
+               slow=slow->next;
+               count++;
+           }
+           if(count<n)
+           {
+               return -1;
+           }
+           while(n--)
+           {
+               curr=curr->next;
+           }
+           Node* temp=head;
+           while(curr!=NULL)
+           {
+               curr=curr->next;
+               temp=temp->next;
+           }
+           
+           return temp->data;
+    }
+};
+
+
+
+//{ Driver Code Starts.
+
 int main()
 {
   int T,i,n,l,k;
@@ -42,52 +93,9 @@ int main()
             tail->next = new Node(l);
             tail = tail->next;
         }
-
-    cout<<getNthFromLast(head, k)<<endl;
+    Solution obj;
+    cout<<obj.getNthFromLast(head, k)<<endl;
     }
     return 0;
 }
 // } Driver Code Ends
-
-
-/* struct Node {
-  int data;
-  struct Node *next;
-  Node(int x) {
-    data = x;
-    next = NULL;
-  }
-};
-*/
-
-//Function to find the data of nth node from the end of a linked list.
-int getNthFromLast(Node *head, int n)
-{
-       // Your code here
-       Node* temp=head;
-       int count=0;
-       while(temp!=NULL)
-       {
-           temp=temp->next;
-           count++;
-       }
-       if(n>count)
-       {
-           return -1;
-       }
-       
-       Node* fast=head;
-       while(n--)
-       {
-           fast=fast->next;
-       }
-       Node* slow=head;
-       while(fast!=NULL)
-       {
-           fast=fast->next;
-           slow=slow->next;
-       }
-       return slow->data;
-       
-}
-
